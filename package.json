@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "nodemon server",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server && gulp"
   },
   "author": "Alex Regan",
   "license": "ISC",
