@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var _ = require('lodash');
+var moment = require('moment');
 var PORT = process.env.PORT || 3000;
 var db = require('./db');
 var id = 11; // db.length === 10
@@ -9,8 +10,8 @@ var itemProps = ['id', 'substrate', 'type', 'manufacturer', 'format', 'size', 'w
 var itemPropsNoId = ['substrate', 'type', 'manufacturer', 'format', 'size', 'wholesaleCost', 'retailPrice', 'stock'];
 
 function reqTimestamp(req, res, next) {
-  console.log(`Method: ${req.method} @${new Date()}`);
-  // console.log(`Req.body: ${req.body}`);
+  console.log(`> Method: ${req.method} at ${moment().format('HH:mm:ss.SSS A')}`);
+  console.log(`>> Req.url: ${req.url}`);
   next();
 }
 
@@ -77,5 +78,5 @@ app.delete('/items/:id', function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log(`> Server started on Port: ${PORT} @${new Date()}`);
+  console.log(`> Server started on Port: ${PORT} @${moment().format('HH:mm:ss.SSS A')}`);
 });

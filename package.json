@@ -14,7 +14,8 @@
     "body-parser": "^1.15.0",
     "bower": "^1.7.9",
     "express": "^4.13.4",
-    "lodash": "^4.11.2"
+    "lodash": "^4.11.2",
+    "moment": "^2.13.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

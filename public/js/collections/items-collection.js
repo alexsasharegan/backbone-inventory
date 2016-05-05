@@ -1,6 +1,8 @@
+'use strict';
+
 var app = app || {};
 
-(function() {
+(function () {
   'use strict';
 
   var Inventory = Backbone.Collection.extend({
@@ -9,5 +11,4 @@ var app = app || {};
   });
 
   app.items = new Inventory();
-
-}());
+})();
