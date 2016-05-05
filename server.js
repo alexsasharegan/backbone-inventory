@@ -3,6 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 var PORT = process.env.PORT || 3000;
+var db = require('./db');
+var id = 11; // db.length === 10
+var itemProps = ['id', 'substrate', 'type', 'manufacturer', 'format', 'size', 'wholesaleCost', 'retailPrice', 'stock'];
+var itemPropsNoId = ['substrate', 'type', 'manufacturer', 'format', 'size', 'wholesaleCost', 'retailPrice', 'stock'];
 
 function reqTimestamp(req, res, next) {
   console.log(`Method: ${req.method} @${new Date()}`);
@@ -10,46 +14,43 @@ function reqTimestamp(req, res, next) {
   next();
 }
 
-var tmpDB = [];
-var id = 0;
-
 app.use(bodyParser.json());
 app.use(reqTimestamp);
 app.use(express.static(__dirname + '/public'));
 app.use('/libs', express.static(__dirname + '/bower_components'));
 
 // @GET all todos
-app.get('/things', function (req, res) {
-  res.json(tmpDB);
+app.get('/items', function (req, res) {
+  res.json(db);
 });
 
 // @GET by :id
-app.get('/things/:id', function (req, res) {
-  var thing = _.find(tmpDB, {id:Number(req.params.id)});
-  res.json(thing);
+app.get('/items/:id', function (req, res) {
+  let item = _.find(db, {id:Number(req.params.id)});
+  res.json(item);
 });
 
 // @POST
-app.post('/things', function (req, res) {
-  var body = _.pick(req.body, ['prop1', 'prop2']);
+app.post('/items', function (req, res) {
+  let body = _.pick(req.body, itemPropsNoId);
 
-  if (body.props !== validDataType) {
-		return res.status(400).send();
-	}
+  // if (body.props !== validDataType) {
+	// 	return res.status(400).send();
+	// }
 
 	body.id = id++;
-  tmpDB.push(body);
+  db.push(body);
   res.json(body);
 });
 
 // @PUT by :id
-app.put('/things/:id', function (req, res) {
-  var body = _.pick(req.body, ['prop1', 'prop2']);
-  var validAttrs = {};
-  var thingId = Number(req.params.id);
-  var matchedThing = _.find(tmpDB, {id: thingId});
+app.put('/items/:id', function (req, res) {
+  let body = _.pick(req.body, ['prop1', 'prop2']);
+  let validAttrs = {};
+  let itemId = Number(req.params.id);
+  let matchedItem = _.find(db, {id: itemId});
 
-  if (!matchedThing) {
+  if (!matchedItem) {
     return res.status(404).send();
   }
 
@@ -59,18 +60,17 @@ app.put('/things/:id', function (req, res) {
     return res.status(400).send();
   }
 
-  _.assignIn(matchedThing, validAttrs);
-  res.json(matchedThing);
+  _.assignIn(matchedItem, validAttrs);
+  res.json(matchedItem);
 });
 
 // @DELETE todo by :id
-app.delete('/things/:id', function (req, res) {
-	var thingId = Number(req.params.id);
-	var matchedThing = _.find(tmpDB, {id: thingId});
+app.delete('/items/:id', function (req, res) {
+	let matchedItem = _.find(db, {id: Number(req.params.id)});
 
-	if (matchedThing) {
-		tmpDB = _.pull(tmpDB, matchedThing);
-		res.json(matchedThing);
+	if (matchedItem) {
+		db = _.pull(db, matchedItem);
+		res.json(matchedItem);
 	} else {
 		res.status(404).send();
 	}

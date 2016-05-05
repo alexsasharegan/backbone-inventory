@@ -2,4 +2,11 @@
 
 var app = app || {};
 
-(function () {})();
+(function () {
+  'use strict';
+
+  var Inventory = Backbone.Collection.extend({
+    model: app.Item,
+    url: '/items'
+  });
+})();
