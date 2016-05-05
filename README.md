@@ -7,12 +7,12 @@
 > bower install
 ```
 
-###Run for viewing:
+##Run for viewing:
 ```
 > npm run start
 ```
 
-###Run for dev:
+##Run for dev:
 ```
-> npm rundev
+> npm run dev
 ```
