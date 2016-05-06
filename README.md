@@ -12,6 +12,7 @@
 ```
 > npm run start
 ```
+Open browser [here](http://localhost:3000/).
 
 ##Run for dev:
 ```
