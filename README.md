@@ -3,6 +3,7 @@
 ##Install
 ```
 > git clone https://github.com/alexsasharegan/backbone-inventory.git
+> cd backbone-inventory
 > npm install
 > bower install
 ```
