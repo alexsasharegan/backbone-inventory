@@ -10,8 +10,7 @@ var itemProps = ['id', 'substrate', 'type', 'manufacturer', 'format', 'size', 'w
 var itemPropsNoId = ['substrate', 'type', 'manufacturer', 'format', 'size', 'wholesaleCost', 'retailPrice', 'stock'];
 
 function reqTimestamp(req, res, next) {
-  console.log(`> Method: ${req.method} at ${moment().format('HH:mm:ss.SSS A')}`);
-  console.log(`>> Req.url: ${req.url}`);
+  console.log(`> ${moment().format('HH:mm:ss.SSS A')}: ${req.method} ${req.url}`);
   next();
 }
 
@@ -35,10 +34,6 @@ app.get('/items/:id', function (req, res) {
 app.post('/items', function (req, res) {
   let body = _.pick(req.body, itemPropsNoId);
 
-  // if (body.props !== validDataType) {
-	// 	return res.status(400).send();
-	// }
-
 	body.id = id++;
   db.push(body);
   res.json(body);
@@ -46,7 +41,7 @@ app.post('/items', function (req, res) {
 
 // @PUT by :id
 app.put('/items/:id', function (req, res) {
-  let body = _.pick(req.body, ['prop1', 'prop2']);
+  let body = _.pick(req.body, itemProps);
   let validAttrs = {};
   let itemId = Number(req.params.id);
   let matchedItem = _.find(db, {id: itemId});
@@ -55,13 +50,7 @@ app.put('/items/:id', function (req, res) {
     return res.status(404).send();
   }
 
-  if (body.hasOwnProperty(prop) && body.prop === validDataType) {
-    validAttrs.prop = body.prop;
-  } else if (body.hasOwnProperty(prop)) {
-    return res.status(400).send();
-  }
-
-  _.assignIn(matchedItem, validAttrs);
+  _.assignIn(matchedItem, body);
   res.json(matchedItem);
 });
 

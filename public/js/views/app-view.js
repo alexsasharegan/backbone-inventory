@@ -6,8 +6,11 @@ var app = app || {};
   'use strict';
 
   app.AppView = Backbone.View.extend({
+
     el: '#app', // main container of div#app
-    events: 'click .someclass', // TODO: add events for adding & editing items
+    events: {
+      // some events here
+    },
     initialize: function initialize() {
       // cache the table body where inv items will be rendered
       this.$tbody = this.$('tbody.item-view');
@@ -34,7 +37,10 @@ var app = app || {};
     addAll: function addAll() {
       // wipe our view clean
       this.$tbody.html('');
+      // iterate through the items returned from
+      // the server and append them to the <tbody>
       app.items.each(this.addOne, this);
     }
+
   });
 })(jQuery);

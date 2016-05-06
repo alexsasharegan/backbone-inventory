@@ -29,27 +29,19 @@
         </tr>
       </thead>
       <tbody class="item-view">
-        <!-- <tr>
-          <td>Acrylic</td>
-          <td>1/4"</td>
-          <td>Acrylite</td>
-          <td>rigid</td>
-          <td>96x48</td>
-          <td>$120</td>
-          <td>$7 ft<sup>2</sup></td>
-          <td>20</td>
-        </tr>
         <tr>
-          <td>Canvas</td>
-          <td>Semigloss</td>
-          <td>Fredericks</td>
-          <td>rigid</td>
-          <td>96x48</td>
-          <td>$120</td>
-          <td>$7 ft<sup>2</sup></td>
-          <td>20</td>
-        </tr> -->
+          <td><input type="text" name="substrate" value="" placeholder="Substrate"></td>
+          <td>Data</td>
+          <td>Test</td>
+          <td>Data</td>
+          <td>Test</td>
+          <td>Data</td>
+          <td>Test</td>
+          <td>Data</td>
+        </tr>
       </tbody>
+      <tfoot>
+      </tfoot>
     </table>
   </div>
 
@@ -63,6 +55,10 @@
     <td>$<%= wholesaleCost %></td>
     <td>$<%= retailPrice %> ft<sup>2</sup></td>
     <td><%= stock %></td>
+  </script>
+  <script type="text/template" id="item-edit-template">
+    <input type="text" autofocus="true" class="input-edit"
+    placeholder="<%- val %>">
   </script>
   <!-- JS Dependencies -->
   <script src="/libs/jquery/dist/jquery.min.js" charset="utf-8"></script>
