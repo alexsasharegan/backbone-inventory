@@ -10,7 +10,7 @@ var itemProps = ['id', 'substrate', 'type', 'manufacturer', 'format', 'size', 'w
 var itemPropsNoId = ['substrate', 'type', 'manufacturer', 'format', 'size', 'wholesaleCost', 'retailPrice', 'stock'];
 
 function reqTimestamp(req, res, next) {
-  console.log(`> ${moment().format('HH:mm:ss.SSS A')}: ${req.method} ${req.url}`);
+  console.log(`> [${moment().format('HH:mm:ss.SSS A')}] ${req.method} ${req.url}`);
   next();
 }
 

@@ -29,16 +29,6 @@
         </tr>
       </thead>
       <tbody class="item-view">
-        <tr>
-          <td><input type="text" name="substrate" value="" placeholder="Substrate"></td>
-          <td>Data</td>
-          <td>Test</td>
-          <td>Data</td>
-          <td>Test</td>
-          <td>Data</td>
-          <td>Test</td>
-          <td>Data</td>
-        </tr>
       </tbody>
       <tfoot>
       </tfoot>
@@ -47,18 +37,18 @@
 
   <!-- TEMPLATES -->
   <script type="text/template" id="item-template">
-    <td><%= substrate %></td>
-    <td><%= type %></td>
-    <td><%= manufacturer %></td>
-    <td><%= format %></td>
-    <td><%= size %></td>
-    <td>$<%= wholesaleCost %></td>
-    <td>$<%= retailPrice %> ft<sup>2</sup></td>
-    <td><%= stock %></td>
+    <td class="substrate"><%= substrate %></td>
+    <td class="type"><%= type %></td>
+    <td class="manufacturer"><%= manufacturer %></td>
+    <td class="format"><%= format %></td>
+    <td class="size"><%= size %></td>
+    <td class="wholesaleCost">$<%= wholesaleCost %></td>
+    <td class="retailPrice">$<%= retailPrice %> ft<sup>2</sup></td>
+    <td class="stock"><%= stock %></td>
   </script>
   <script type="text/template" id="item-edit-template">
-    <input type="text" autofocus="true" class="input-edit"
-    placeholder="<%- val %>">
+    <input type="text" autofocus
+    class="input-edit" placeholder="<%- val %>">
   </script>
   <!-- JS Dependencies -->
   <script src="/libs/jquery/dist/jquery.min.js" charset="utf-8"></script>

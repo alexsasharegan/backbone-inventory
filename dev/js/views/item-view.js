@@ -37,11 +37,15 @@ var app = app || {};
         // grab the user's input we want to save
         let valueToSave = elem.val();
         // put that value into the <td>
+        let attr = elem.parent().attr('class');
         elem.parent().html(valueToSave);
-        // I want to save the user input to the model
-        // but I don't know how to reference the correct
-        // model attribute
-        this.model.save();
+        // build our model hash
+        let hash = {};
+        // use the class name to get the model attr
+        // and store the new value
+        hash[attr] = valueToSave;
+        // @PUT in the db
+        this.model.save(hash);
       }
     },
     closeOnEsc: function (e) {
