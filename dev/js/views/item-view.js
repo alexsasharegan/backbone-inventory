@@ -11,10 +11,11 @@ var app = app || {};
       'dblclick': 'editItem',
       'keypress': 'updateOnEnter',
       'keydown': 'closeOnEsc',
-      'blur': 'close',
+      'blur input.input-edit': 'close',
     },
     template: _.template($('#item-template').html()),
     itemEditTemplate: _.template($('#item-edit-template').html()),
+    lastEdited: {},
     initialize: function () {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
@@ -25,10 +26,15 @@ var app = app || {};
       return this;
     },
     editItem: function (e) {
+      // cache a $ version of the object that called the event
       let elem = $(e.target);
+      // save the original <td> data
       let val = elem.html();
-      this.lastEdited = val;
-      elem.html(this.itemEditTemplate({val: val}));
+      // store the model attr name that is also the <td> class
+      let prop = elem.attr('class');
+      // save the value so we can revert to it later
+      this.lastEdited[prop] = val;
+      elem.html(this.itemEditTemplate({val: val, prop: prop}));
     },
     updateOnEnter: function (e) {
       if (e.which === ENTER_KEY) {
@@ -55,7 +61,8 @@ var app = app || {};
     },
     close: function (e) {
       let elem = $(e.target);
-      $(e.target).parent().html(this.lastEdited);
+      let prop = elem.attr('name');
+      $(e.target).parent().html(this.lastEdited[prop]);
     },
   });
 

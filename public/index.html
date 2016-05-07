@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Backbone Boilerplate</title>
+  <title>Inventory | Backbone</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css" charset="utf-8">
   <link rel="stylesheet" href="/css/main.css" charset="utf-8">
@@ -33,7 +33,8 @@
       <tfoot>
       </tfoot>
     </table>
-  </div>
+
+  </div> <!-- END main .container -->
 
   <!-- TEMPLATES -->
   <script type="text/template" id="item-template">
@@ -47,9 +48,10 @@
     <td class="stock"><%= stock %></td>
   </script>
   <script type="text/template" id="item-edit-template">
-    <input type="text" autofocus
+    <input type="text" autofocus="true" name="<%= prop %>"
     class="input-edit" placeholder="<%- val %>">
   </script>
+
   <!-- JS Dependencies -->
   <script src="/libs/jquery/dist/jquery.min.js" charset="utf-8"></script>
   <script src="/libs/underscore/underscore-min.js" charset="utf-8"></script>

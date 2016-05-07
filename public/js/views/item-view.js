@@ -13,10 +13,11 @@ var app = app || {};
       'dblclick': 'editItem',
       'keypress': 'updateOnEnter',
       'keydown': 'closeOnEsc',
-      'blur': 'close'
+      'blur input.input-edit': 'close'
     },
     template: _.template($('#item-template').html()),
     itemEditTemplate: _.template($('#item-edit-template').html()),
+    lastEdited: {},
     initialize: function initialize() {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
@@ -27,10 +28,15 @@ var app = app || {};
       return this;
     },
     editItem: function editItem(e) {
+      // cache a $ version of the object that called the event
       var elem = $(e.target);
+      // save the original <td> data
       var val = elem.html();
-      this.lastEdited = val;
-      elem.html(this.itemEditTemplate({ val: val }));
+      // store the model attr name that is also the <td> class
+      var prop = elem.attr('class');
+      // save the value so we can revert to it later
+      this.lastEdited[prop] = val;
+      elem.html(this.itemEditTemplate({ val: val, prop: prop }));
     },
     updateOnEnter: function updateOnEnter(e) {
       if (e.which === ENTER_KEY) {
@@ -57,7 +63,8 @@ var app = app || {};
     },
     close: function close(e) {
       var elem = $(e.target);
-      $(e.target).parent().html(this.lastEdited);
+      var prop = elem.attr('name');
+      $(e.target).parent().html(this.lastEdited[prop]);
     }
   });
 })(jQuery);

@@ -10,7 +10,7 @@ var itemProps = ['id', 'substrate', 'type', 'manufacturer', 'format', 'size', 'w
 var itemPropsNoId = ['substrate', 'type', 'manufacturer', 'format', 'size', 'wholesaleCost', 'retailPrice', 'stock'];
 
 function reqTimestamp(req, res, next) {
-  console.log(`> [${moment().format('HH:mm:ss.SSS A')}] ${req.method} ${req.url}`);
+  console.log(`> [${moment().format('HH:mm:ss.SSS')}] ${req.method} ${req.url}`);
   next();
 }
 
@@ -67,5 +67,5 @@ app.delete('/items/:id', function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log(`> Server started on Port: ${PORT} @${moment().format('HH:mm:ss.SSS A')}`);
+  console.log(`> [${moment().format('HH:mm:ss.SSS')}]: Server started on Port ${PORT}`);
 });
