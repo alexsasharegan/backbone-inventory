@@ -9,4 +9,16 @@ body {
     background-color: $td-toggle;
   }
 
+  table {
+    font-size: 1.2em;
+  }
+
+  tr button.delete-row {
+    display: none;
+  }
+
+  tr:hover button.delete-row {
+    display: inline-block;
+  }
+
 }

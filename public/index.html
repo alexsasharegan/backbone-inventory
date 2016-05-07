@@ -38,7 +38,12 @@
 
   <!-- TEMPLATES -->
   <script type="text/template" id="item-template">
-    <td class="substrate"><%= substrate %></td>
+    <td class="substrate">
+      <button class="btn btn-default delete-row">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>&nbsp;&nbsp;
+      <%= substrate %>
+    </td>
     <td class="type"><%= type %></td>
     <td class="manufacturer"><%= manufacturer %></td>
     <td class="format"><%= format %></td>

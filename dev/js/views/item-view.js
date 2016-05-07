@@ -12,6 +12,7 @@ var app = app || {};
       'keypress': 'updateOnEnter',
       'keydown': 'closeOnEsc',
       'blur input.input-edit': 'close',
+      'click button.delete-row': 'deleteRow',
     },
     template: _.template($('#item-template').html()),
     itemEditTemplate: _.template($('#item-edit-template').html()),
@@ -63,6 +64,9 @@ var app = app || {};
       let elem = $(e.target);
       let prop = elem.attr('name');
       $(e.target).parent().html(this.lastEdited[prop]);
+    },
+    deleteRow: function (e) {
+      this.model.destroy();
     },
   });
 
