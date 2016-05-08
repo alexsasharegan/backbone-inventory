@@ -13,6 +13,11 @@
 
     <div class="page-header">
       <h1>Inventory</h1>
+      <h3>
+        <button type="button" class="btn btn-info new-item">
+          <span class="glyphicon glyphicon-plus"></span> New Item
+        </button>
+      </h3>
     </div>
 
     <table class="table table-hover">
@@ -30,13 +35,15 @@
       </thead>
       <tbody class="item-view">
       </tbody>
-      <tfoot>
+      <tfoot class="new-item">
       </tfoot>
     </table>
 
   </div> <!-- END main .container -->
 
   <!-- TEMPLATES -->
+  <!-- ================================================== -->
+  <!-- Item Template -->
   <script type="text/template" id="item-template">
     <td class="substrate">
       <button class="btn btn-default delete-row">
@@ -52,9 +59,51 @@
     <td class="retailPrice">$<%= retailPrice %> ft<sup>2</sup></td>
     <td class="stock"><%= stock %></td>
   </script>
+  <!-- Item EDIT Template -->
   <script type="text/template" id="item-edit-template">
     <input type="text" autofocus="true" name="<%= prop %>"
     class="input-edit" placeholder="<%- val %>">
+  </script>
+  <!-- NEW Item Template -->
+  <script type="text/template" id="new-item-template">
+    <td>
+      <input type="text" name="substrate"
+      placeholder="Substrate">
+    </td>
+    <td>
+      <input type="text" name="type"
+      placeholder="Type">
+    </td>
+    <td>
+      <input type="text" name="manufacturer"
+      placeholder="Manufacturer">
+    </td>
+    <td>
+      <input type="text" name="format"
+      placeholder="Format">
+    </td>
+    <td>
+      <input type="text" name="size"
+      placeholder="Size">
+    </td>
+    <td>
+      <input type="text" name="wholesaleCost"
+      placeholder="Wholesale Cost">
+    </td>
+    <td>
+      <input type="text" name="retailPrice"
+      placeholder="Retail Price">
+    </td>
+    <td>
+      <input type="text" name="stock"
+      placeholder="Stock">
+      <button type="button" name="button" class="btn btn-info save-item">
+        <span class="glyphicon glyphicon-save"></span>
+      </button>&nbsp;
+      <button type="button" name="button" class="btn btn-info delete-item">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </td>
   </script>
 
   <!-- JS Dependencies -->
@@ -65,6 +114,7 @@
   <script src="/js/models/item-model.js" charset="utf-8"></script>
   <!-- VIEWS -->
   <script src="/js/views/item-view.js" charset="utf-8"></script>
+  <script src="/js/views/new-item-view.js" charset="utf-8"></script>
   <script src="/js/views/app-view.js" charset="utf-8"></script>
   <!-- COLLECTIONS -->
   <script src="/js/collections/items-collection.js" charset="utf-8"></script>

@@ -9,11 +9,12 @@ var app = app || {};
 
     el: '#app', // main container of div#app
     events: {
-      // some events here
+      'click button.new-item': 'newItem'
     },
     initialize: function initialize() {
       // cache the table body where inv items will be rendered
       this.$tbody = this.$('tbody.item-view');
+      this.$tfooter = this.$('tfoot.new-item');
 
       this.listenTo(app.items, 'add', this.addOne);
       this.listenTo(app.items, 'reset', this.addAll);
@@ -40,6 +41,10 @@ var app = app || {};
       // iterate through the items returned from
       // the server and append them to the <tbody>
       app.items.each(this.addOne, this);
+    },
+    newItem: function newItem(e) {
+      var newItemView = new app.NewItemView();
+      this.$tfooter.append(newItemView.render().el);
     }
 
   });
