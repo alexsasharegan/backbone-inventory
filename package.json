@@ -6,7 +6,12 @@
   "scripts": {
     "test": "nodemon server",
     "start": "node server.js",
+    "postinstall": "bower cache clean && bower install",
     "dev": "node server && gulp"
+  },
+  "repository" :
+    { "type" : "git"
+    , "url" : "https://github.com/alexsasharegan/backbone-inventory.git"
   },
   "author": "Alex Regan",
   "license": "ISC",
